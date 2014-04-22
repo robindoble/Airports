@@ -1,11 +1,10 @@
+require_relative 'weather_randomizer'
+
 class Airport
 
-# def initialize 
-# 	@planes = []
-# end
+include Weather_randomizer
 
 DEFAULT_CAP = 10
-
 
 	def initialize (options={})
 		@capacity = options.fetch(:capacity,capacity)
@@ -44,7 +43,7 @@ DEFAULT_CAP = 10
 	end
 
 	def is_stormy?
-		true
+		weather?
 	end
 
 end
