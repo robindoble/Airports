@@ -42,11 +42,17 @@ let (:plane) {double :plane}
 		# expect{airport.land(plane)}.to raise_error
 	end
 
-	it 'plans cant land if its stormy' do 
-		expect(airport.land(plane)).to eq("sorry, you cant land in stormy weather")
+	it 'planes cant land if its stormy' do 
+		expect(airport.land(plane)).to eq("sorry, no landing in stormy weather")
+		expect(airport.plane_count).to be(0)
+	end
+
+	it 'planes cant take off in stormy weather either' do 
+		airport.stub(:is_stormy?).and_return(false)
+		airport.land(plane)
+		airport.stub(:is_stormy?).and_return(true)
+		expect(airport.take_off(plane)).to eq("sorry, no taking-off in stormy weather")
+		expect(airport.plane_count).to be(1)
 	end
 
 end
-
-
-# 	
