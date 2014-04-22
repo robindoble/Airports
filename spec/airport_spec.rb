@@ -11,7 +11,7 @@ let (:plane) {double :plane}
 	end
 
 	it 'can land more than one plane' do
-		# airport.stub(:is_stormy?).and_return(false)
+		airport.stub(:is_stormy?).and_return(false)
 		2.times {airport.land(plane)}
 		expect(airport.plane_count).to eq(2)
 	end
@@ -31,16 +31,22 @@ let (:plane) {double :plane}
 	end
 
 	it 'knows when it has reached capacity' do 
+		airport.stub(:is_stormy?).and_return(false) 
 		6.times {airport.land(plane)}
 		expect(airport.is_full?).to be_true 
-		# expect(airport.land(plane)).to eq("sorry, airport is at capacity") 
+		expect(airport.land(plane)).to eq("sorry, airport is at capacity") 
+	end
+
+	it 'weather can be stormy' do
+		airport.is_stormy?
+		# expect{airport.land(plane)}.to raise_error
+	end
+
+	it 'plans cant land if its stormy' do 
+		expect(airport.land(plane)).to eq("sorry, you cant land in stormy weather")
 	end
 
 end
 
 
-# it 'planes cant land if weather is stormy' do
-# 		airport.is_stormy?
-# 		expect{airport.land(plane)}.to raise_error
-# 	end
 # 	
