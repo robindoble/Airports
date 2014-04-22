@@ -48,10 +48,3 @@ DEFAULT_CAP = 10
 	end
 
 end
-
-# def land_plane_test
-# 	begin
-# 		airport.land(plane)
-# 	rescue
-# 		retry
-		

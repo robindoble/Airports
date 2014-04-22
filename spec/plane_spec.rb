@@ -13,7 +13,7 @@ let (:plane) {Plane.new}
 		expect(plane.flying?).to be_false
 	end
 
-	it 'can take-off, so no longer flying' do
+	it 'can take-off, so now flying' do
 		plane.land
 		plane.take_off
 		expect(plane.flying?).to be_true

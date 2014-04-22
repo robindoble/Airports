@@ -4,36 +4,36 @@ require 'plane'
 describe Airport do 
 
 
-let (:Makersairbase) 	{Airport.new(capacity: 6)}
+let (:makers_airbase) 	{Airport.new(capacity: 6)}
 
-let (:Betsy) 					{Plane.new}
-let (:Flying_ace) 		{Plane.new}
-let (:Tupac_attack) 	{Plane.new}
-let (:Air_force_chum) {Plane.new}
-let (:Futurama) 			{Plane.new}
-let (:Sweet_mary) 		{Plane.new}
-
-
-	# it "can try to land 6 planes" do
-	# fleet = [:Betsy,:Flying_ace,:Tupac_attack,:Air_force_chum,:Futurama,:Sweet_mary]
-	
-	# fleet.each do |plane| 
-	# 	loop do 
-	# 		Makersairbase.land(plane)
-	# 		plane.@flying ? retry : break
-	# 	end
-	# # end
-	# expect(Makersairbase.plane_count).to eq(6)
-	# end
-	
+let (:betsy) 					{Plane.new}
+let (:flying_ace) 		{Plane.new}
+let (:tupac_attack) 	{Plane.new}
+let (:air_force_chum) {Plane.new}
+let (:futurama) 			{Plane.new}
+let (:sweet_mary) 		{Plane.new}
 
 
-	# airport.land(Betsy)
-	# airport.land(Betsy)
-	# airport.land(Betsy)
-	# airport.land(Betsy)
-	# airport.land(Betsy)
+		it "can land 6 planes, know its full, and depart them again" do
+			fleet = [betsy,flying_ace,tupac_attack,air_force_chum,futurama,sweet_mary]
 
+			fleet.each do |plane| 
+				loop do 
+					makers_airbase.land(plane)
+					break if !plane.flying? 
+				end
+			end
 
-	
+			expect(makers_airbase.plane_count).to eq(6)
+			expect(makers_airbase.is_full?).to be_true
+
+			fleet.each do |plane| 
+				loop do 
+					makers_airbase.take_off(plane)
+					break if plane.flying? 
+				end
+			end
+		
+		end
+
 end
