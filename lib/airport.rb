@@ -15,7 +15,7 @@ DEFAULT_CAP = 10
 	end
 
 	def planes
-		@planes ||= [] 
+		@planes ||= []
 	end
 
 	def has_planes?
@@ -25,6 +25,7 @@ DEFAULT_CAP = 10
 	def land(plane)
 		return "sorry, no landing in stormy weather" if is_stormy?
 		return "sorry, airport is at capacity" if is_full?
+		# what happens if the plane doesn't land?
 		planes << plane
 		plane.land
 	end
@@ -43,6 +44,7 @@ DEFAULT_CAP = 10
 	plane_count == @capacity
 	end
 
+	# this has no value, just call the method is_stormy? in the wather module
 	def is_stormy?
 		weather?
 	end

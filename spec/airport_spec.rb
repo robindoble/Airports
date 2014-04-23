@@ -1,7 +1,7 @@
 require 'airport'
 require 'plane'
 
-describe Airport do 
+describe Airport do
 
 let (:airport) {Airport.new(capacity: 6)}
 plane = Plane.new
@@ -32,14 +32,14 @@ plane = Plane.new
 		airport_instance = Airport.new(capacity: 20)
 	end
 
-	it 'knows when it has reached capacity' do 
-		airport.stub(:is_stormy?).and_return(false) 
+	it 'knows when it has reached capacity' do
+		airport.stub(:is_stormy?).and_return(false)
 		6.times {airport.land(plane)}
-		expect(airport.is_full?).to be_true 
-		expect(airport.land(plane)).to eq("sorry, airport is at capacity") 
+		expect(airport.is_full?).to be_true
+		expect(airport.land(plane)).to eq("sorry, airport is at capacity")
 	end
 
-	it 'landing a plane means that plane is now not flying' do 
+	it 'landing a plane means that plane is now not flying' do
 		airport.stub(:is_stormy?).and_return(false)
 		airport.land(plane)
 		expect(plane.flying?).to be_false
@@ -55,13 +55,13 @@ plane = Plane.new
 		airport.is_stormy?
 	end
 
-	it 'planes cant land if its stormy' do 
+	it 'planes cant land if its stormy' do
 		airport.stub(:is_stormy?).and_return(true)
 		expect(airport.land(plane)).to eq("sorry, no landing in stormy weather")
 		expect(airport.plane_count).to be(0)
 	end
 
-	it 'planes cant take off in stormy weather either' do 
+	it 'planes cant take off in stormy weather either' do
 		airport.stub(:is_stormy?).and_return(false)
 		airport.land(plane)
 		airport.stub(:is_stormy?).and_return(true)

@@ -1,4 +1,4 @@
-
+# indentation!!
 class Plane
 
 
@@ -9,7 +9,7 @@ end
 def flying?
 	@flying
 end
-	
+
 def land
 	@flying = false
 end
